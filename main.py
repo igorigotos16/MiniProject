@@ -1,13 +1,14 @@
 import sys
 import sqlite3
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QTableWidgetItem
-from PyQt5 import uic
+from main_ui import Ui_MainWindow
+from addEditCoffeeForm import Ui_Form
 
 
-class MainForm(QMainWindow):
+class MainForm(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('main.ui', self)
+        self.setupUi(self)
         self.btn_exit.clicked.connect(self.terminate)
         self.btn_update.clicked.connect(self.update)
         self.btn_add.clicked.connect(self.add_new)
@@ -65,10 +66,10 @@ class MainForm(QMainWindow):
         self.close()
 
 
-class AddForm(QWidget):
+class AddForm(QWidget, Ui_Form):
     def __init__(self, id):
         super().__init__()
-        uic.loadUi('addEditCoffeeForm.ui', self)
+        self.setupUi(self)
         self.id = id
         self.btn_exit.clicked.connect(self.terminate)
         self.btn_save.clicked.connect(self.save)
